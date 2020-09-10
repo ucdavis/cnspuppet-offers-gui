@@ -1,0 +1,28 @@
+{
+  "name": "cnspuppet-offers-gui",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder build --win --publish never",
+    "deploy": "electron-builder build --win --publish always"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ucdavis/cnspuppet-offers-gui.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ucdavis/cnspuppet-offers-gui/issues"
+  },
+  "homepage": "https://github.com/ucdavis/cnspuppet-offers-gui#readme",
+  "devDependencies": {
+    "electron": "^10.1.1",
+    "electron-builder": "^22.8.0"
+  },
+  "dependencies": {
+    "electron-updater": "^4.3.4"
+  }
+}
