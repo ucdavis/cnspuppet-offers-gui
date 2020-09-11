@@ -1,5 +1,10 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
+const log = require('electron-log');
 const { autoUpdater } = require('electron-updater');
+
+autoUpdater.logger = log;
+autoUpdater.logger.transports.file.level = 'info';
+log.info('App starting...');
 
 const fs = require('fs');
 const Papa = require('papaparse');
@@ -27,6 +32,7 @@ function createWindow () {
 
 app.on('ready', () => {
   createWindow();
+  //autoUpdater.checkForUpdatesAndNotify();
 });
 
 app.on('window-all-closed', function () {
@@ -44,6 +50,10 @@ app.on('activate', function () {
 ipcMain.on('app_version', (event) => {
   event.sender.send('app_version', { version: app.getVersion() });
 });
+
+autoUpdater.on('checking-for-update', () => {
+  log.info('Checking for update...');
+})
 
 autoUpdater.on('update-available', () => {
   mainWindow.webContents.send('update_available');
