@@ -1,6 +1,6 @@
 {
   "name": "cnspuppet-offers-gui",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "CNS User Self Service Application",
   "main": "main.js",
   "scripts": {
