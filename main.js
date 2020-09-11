@@ -32,7 +32,7 @@ function createWindow () {
 
 app.on('ready', () => {
   createWindow();
-  //autoUpdater.checkForUpdatesAndNotify();
+  autoUpdater.checkForUpdatesAndNotify();
 });
 
 app.on('window-all-closed', function () {

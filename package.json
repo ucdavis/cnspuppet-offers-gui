@@ -26,5 +26,13 @@
     "electron-log": "^4.2.4",
     "electron-updater": "^4.3.4",
     "papaparse": "^5.3.0"
-  }
+  },
+  "build": {
+    "extraResources": [
+        {
+            "from": "assets",
+            "to": "../assets"
+        }
+    ]
+}
 }
