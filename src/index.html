@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-  <title>Electron Auto Update Example</title>
+  <title>CNS User Self Service Application</title>
   <style>
     body {
       box-sizing: border-box;
@@ -26,8 +26,9 @@
   </style>
 </head>
 <body>
-  <h1>CNS User Self Service Appilcation</h1>
+  <h1>CNS User Self Service Application</h1>
   <p id="version"></p>
+  <div id="parsed_csv_list"></div>
   <div id="notification" class="hidden">
     <p id="message"></p>
     <button id="close-button" onClick="closeNotification()">
@@ -43,6 +44,7 @@
     const notification = document.getElementById('notification');
     const message = document.getElementById('message');
     const restartButton = document.getElementById('restart-button');
+    const parsed_csv_list = document.getElementById('parsed_csv_list');
     
     ipcRenderer.send('app_version');
     ipcRenderer.on('app_version', (event, arg) => {
@@ -70,5 +72,28 @@
     function restartApp() {
       ipcRenderer.send('restart_app');
     }
+    
+    ipcRenderer.send('available_offers');
+    ipcRenderer.on('available_offers', (event, arg) => {
+      ipcRenderer.removeAllListeners('available_offers');
+      var table = "<table class='table'>";
+	//var data = arg;
+	 
+	for(i=0;i<arg.length;i++){
+		table+= "<tr>";
+		var row = arg[i];
+		var cells = row.join(",").split(",");
+		 
+		for(j=0;j<cells.length;j++){
+			table+= "<td>";
+			table+= cells[j];
+			table+= "</th>";
+		}
+		table+= "</tr>";
+	}
+	table+= "</table>";
+	parsed_csv_list.innerHTML = table;
+        //$("#parsed_csv_list").html(table);
+    });
   </script>
 </body>

@@ -1,6 +1,11 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const { autoUpdater } = require('electron-updater');
 
+const fs = require('fs');
+const Papa = require('papaparse');
+const csvFilePath = 'assets/available'
+const file = fs.createReadStream(csvFilePath);
+
 let mainWindow;
 
 function createWindow () {
@@ -50,4 +55,21 @@ autoUpdater.on('update-downloaded', () => {
 
 ipcMain.on('restart_app', () => {
   autoUpdater.quitAndInstall();
+});
+
+ipcMain.on('available_offers', (event) => {
+  var csvData=[];
+  Papa.parse(file, {
+    step: function(result) {
+      csvData.push(result.data)
+    },
+    complete: function(results, file) {
+      console.log('Complete', csvData.length, 'records.');
+      event.sender.send('available_offers', csvData);
+    }
+    //complete: function(results) {
+      //console.log(results);
+    //}
+  });
+  //event.sender.send('available_offers', csvData);
 });
