@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/ucdavis/cnspuppet-offers-gui#readme",
   "devDependencies": {
-    "electron": "^10.1.1",
+    "electron": "^18.3.7",
     "electron-builder": "^22.8.0"
   },
   "dependencies": {
