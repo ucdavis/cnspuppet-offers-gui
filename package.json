@@ -20,7 +20,7 @@
   "homepage": "https://github.com/ucdavis/cnspuppet-offers-gui#readme",
   "devDependencies": {
     "electron": "^10.1.1",
-    "electron-builder": "^22.8.0"
+    "electron-builder": "^22.14.13"
   },
   "dependencies": {
     "electron-log": "^4.2.4",
